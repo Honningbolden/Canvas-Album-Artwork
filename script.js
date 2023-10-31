@@ -15,9 +15,6 @@ let colorPalette = {
 
 ctx.fillStyle = "rgba(255, 100, 50, 0.2)"
 
-let mean = canvas.width/2;
-let stdev = 400;
-
 for (let i = 0; i < 50; i++) {
     let x = Math.floor(gaussianRandomX());
     let y = Math.floor(gaussianRandomX());
