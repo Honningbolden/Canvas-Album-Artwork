@@ -3,43 +3,121 @@ let canvas = document.getElementById("my-canvas");
 let ctx = canvas.getContext("2d");
 
 let colorPalette = {
-    oceanblue: "#1C6CC7",
-    oceanreflectionblue: "#4583E1",
+    oceanblue: "rgba(28, 108, 199, 1)",
+    oceanreflectionblue: "rgba(69, 131, 225, 1)",
 
-    iceblue: "#B6DBF2",
-    icewhite: "#F2F2F2",
+    iceblue: "rgb(182, 219, 242)",
+    icewhite: "rgb(242, 242, 242)",
 
-    bearyellow: "#F2DBAE",
-    bearorange: "#F2C791",
+    bearyellow: "rgb(242, 219, 174)",
+    bearorange: "rgb(242, 199, 145)",
 }
 
-ctx.fillStyle = "rgba(255, 100, 50, 0.2)"
+let gradient = ctx.createLinearGradient(500, 800, 500, 1000);
+gradient.addColorStop(0, "rgba(28, 108, 199, 1)");
+gradient.addColorStop(1, "rgba(69, 131, 225, 0.4)");
 
-for (let i = 0; i < 50; i++) {
-    let x = Math.floor(gaussianRandomX());
-    let y = Math.floor(gaussianRandomX());
+// Circle generator
+for (let i = 0; i < 500; i++) {
 
-    fillCircle(x, y, 100);
+    const circleSpacing = 2;
+    const radius = 16 - circleSpacing // Circle radius
 
-    console.log(500)
+    let isFull;
+
+
+// X - axis //
+
+    const gridVarX = canvas.width / ((radius + circleSpacing) * 2) // Create grid positions based on radius
+    const gridAmountX = canvas.width / gridVarX // Fit grid positions to canvas.width
+
+    const xFragment = Math.floor(randomX() * (gridVarX + 1)) // Choose a random spot on the grid
+
+    const x = xFragment * gridAmountX; // Set X-value to fit to grid
+
+
+// Y - axis //
+
+    const gridVarY = canvas.height / ((radius + circleSpacing) * 2) // Create grid positions based on radius
+    const gridAmountY = canvas.width / gridVarY // Fit grid positions to canvas.width
+
+    const yFragment = Math.floor(randomY() * (gridVarY + 1)) // Choose a random spot on the grid
+
+    const y = yFragment * gridAmountY; // Set Y-value to fit to grid
+
+
+// Circle Coloration
+    ctx.fillStyle = gradient;
+
+    fillCircle(x, y, radius, isFull);
 }
+
+// Iceberg-bottom
+ctx.beginPath();
+ctx.moveTo(150, 700)
+ctx.lineTo(150, 750)
+ctx.lineTo(200, 780)
+ctx.lineTo(300, 800)
+ctx.lineTo(700, 800)
+ctx.lineTo(900, 750)
+ctx.lineTo(900, 700)
+ctx.closePath()
+ctx.fillStyle = "rgba(182, 219, 242, 0.97)";
+ctx.globalCompositeOperation = "normal";
+ctx.fill()
+
+
+
+// Iceberg-top
+ctx.beginPath();
+ctx.moveTo(300, 750)
+ctx.lineTo(700, 750)
+ctx.lineTo(900, 700)
+ctx.lineTo(800, 675)
+ctx.lineTo(500, 665)
+ctx.lineTo(250, 680)
+ctx.lineTo(150, 700)
+ctx.lineTo(200, 730)
+ctx.lineTo(300, 750)
+ctx.closePath()
+ctx.globalCompositeOperation = "normal";
+ctx.fillStyle = colorPalette.icewhite;
+ctx.fill()
 
 // Helper functions
 
-function fillCircle(x, y, radius) {
+function fillCircle(x, y, radius, isFull) {
     ctx.beginPath();
     ctx.arc(x, y, radius, 0, Math.PI * 2);
     ctx.fill();
 }
 
-function gaussianRandomX() {
-    let x;
-    do {
-        const u = 1 - Math.random();
-        const v = Math.random();
-        const z = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
-        x = z * stdev + mean;
-    } while (x < 0 || x > canvas.width);
+function randomX() {
+    var mean = 0.5; // Mean of the Gaussian distribution
+    var standardDeviation = 0.2; // Standard deviation of the Gaussian distribution
+    
+    return Math.abs(randomGaussian(mean, standardDeviation));
+}
 
-    return x;
+function randomY() {
+    var mean = 0.3; // Mean of the Gaussian distribution
+    var standardDeviation = 0.07; // Standard deviation of the Gaussian distribution
+    
+
+    return 0.7 + Math.abs(0.3 - randomGaussian(mean, standardDeviation));
+}
+
+function randomGaussian(mean, standardDeviation) {
+    var x1, x2, w;
+    do {
+        x1 = 2 * Math.random() - 1;
+        x2 = 2 * Math.random() - 1;
+        w = x1 * x1 + x2 * x2;
+    } while (w >= 1);
+
+    w = Math.sqrt((-2 * Math.log(w)) / w);
+    var z1 = x1 * w;
+    // z2 = x2 * w;  // If you need two random numbers
+
+    return mean + z1 * standardDeviation;
 }
