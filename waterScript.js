@@ -25,6 +25,32 @@ function draw() {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height)
 
+    // Draw background
+    ctx.fillStyle = "rgba(31, 129, 255, 0.1)" 
+    ctx.beginPath()
+    ctx.arc(540, 540, 300, Math.PI * 0, Math.PI * 2, true)
+    ctx.closePath()
+    ctx.fill()
+
+    ctx.fillStyle = "rgba(31, 129, 255, 0.1)" 
+    ctx.beginPath()
+    ctx.arc(540, 540, 250, Math.PI * 0, Math.PI * 2, true)
+    ctx.closePath()
+    ctx.fill()
+
+    ctx.fillStyle = "rgba(31, 129, 255, 0.1)" 
+    ctx.beginPath()
+    ctx.arc(540, 540, 200, Math.PI * 0, Math.PI * 2, true)
+    ctx.closePath()
+    ctx.fill()
+
+    // Draw water backdrop
+    ctx.fillStyle = "rgba(255, 255, 255, 1)"  
+    ctx.fillRect(0, 760, canvas.width, canvas.height)
+
+    ctx.fillStyle = "rgba(31, 129, 255, 0.3)"  
+    //ctx.fillRect(0, 760, canvas.width, canvas.height)
+
     // Circle generator
 for (let i = 0; i < 100; i++) {
 
@@ -64,7 +90,7 @@ for (let i = 0; i < 100; i++) {
 // Alpha Factor for Y
     alphaFactorY = 1 - Math.abs(yFragment - gridAmountY / 2) / (gridAmountY / 2);   // (1 - yFragment / gridAmountY) * 4
 
-    ctx.fillStyle = `rgba(28, 108, 199, ${alphaFactorX})`
+    ctx.fillStyle = `rgba(31, 129, 255, ${alphaFactorX})`       //  ctx.fillStyle = `rgba(28, 108, 199, ${alphaFactorX})`
     circles.push({x, y, radius})
 
     fillCircle(x, y, radius);
@@ -82,12 +108,13 @@ for (let i = 0; i < 100; i++) {
     function icebergBottom() {
         ctx.beginPath();
         ctx.moveTo(150, 700);
-        ctx.lineTo(150, 750);
-        ctx.lineTo(200, 780);
-        ctx.lineTo(300, 800);
-        ctx.lineTo(700, 800);
-        ctx.lineTo(900, 750);
-        ctx.lineTo(900, 700);
+        ctx.lineTo(160, 760);
+        ctx.lineTo(220, 780);
+        ctx.lineTo(350, 795);
+        ctx.lineTo(680, 800);
+        ctx.lineTo(780, 790);
+        ctx.lineTo(905, 760);
+        ctx.lineTo(925, 700)
         ctx.closePath();
         ctx.fillStyle = "rgba(182, 219, 242, 0.97)";
         ctx.globalCompositeOperation = "normal";
@@ -98,7 +125,7 @@ for (let i = 0; i < 100; i++) {
         ctx.beginPath();
         ctx.moveTo(300, 750);
         ctx.lineTo(700, 750);
-        ctx.lineTo(900, 700);
+        ctx.lineTo(925, 700);
         ctx.lineTo(800, 675);
         ctx.lineTo(500, 665);
         ctx.lineTo(250, 680);
@@ -133,17 +160,77 @@ for (let i = 0; i < 100; i++) {
     }
 
     // Draw polar bear
-    ctx.fillStyle = colorPalette.bearyellow
+
+    ctx.fillStyle = "#E1E6E2" // Back arm - shadow       "#FAF6F3"
     ctx.beginPath()
-    ctx.arc(650, 400, 50, Math.PI * 1, Math.PI * 0)
-    ctx.arc(670, 690, 30, 0, Math.PI * 0.5)
-    ctx.arc(620, 550, 170, Math.PI * 0.5, Math.PI * 1.5)
+    ctx.arc(550, 515, 20, Math.PI * 0, Math.PI * 1, true)
+    ctx.arc(555, 590, 30, Math.PI * 1.1, Math.PI * 0, true)
     ctx.closePath()
     ctx.fill()
 
-    ctx.fillStyle = colorPalette.bearorange
+    ctx.fillStyle = "#FDFBFC"
     ctx.beginPath()
-    ctx.arc(550, 700, 50, 0, Math.PI * 2)
+    ctx.moveTo(680, 440)
+    ctx.quadraticCurveTo(685, 455, 700, 480)
+    ctx.quadraticCurveTo(750, 570, 750, 650)
+    ctx.arc(680, 650, 70, 0, Math.PI * 0.5)
+    ctx.arc(450, 670, 50, Math.PI * 0.5, Math.PI * 1.5)
+    ctx.arc(520, 600, 20, Math.PI * 0.5, Math.PI * 1.9, true)
+    ctx.quadraticCurveTo(520, 520, 540, 450)
+    ctx.arc(530, 450, 10, Math.PI * 0, Math.PI * 1.5, true)
+    ctx.arc(530, 370, 70, Math.PI * 0.5, Math.PI * 0.75)
+    ctx.quadraticCurveTo(450, 390, 480, 390)    // Nose-part
+    ctx.lineTo(500, 380)
+    ctx.quadraticCurveTo(525, 340, 570, 335)
+    ctx.quadraticCurveTo(585, 334, 600, 335)
+    ctx.quadraticCurveTo(660, 340, 680, 440)
+    ctx.closePath()
+    ctx.fill()
+
+    ctx.fillStyle = "#010104"
+    ctx.beginPath() // Nose
+    ctx.moveTo(470, 410)
+    ctx.quadraticCurveTo(450, 390, 480, 390)
+    ctx.quadraticCurveTo(510, 390, 490, 410)
+    ctx.quadraticCurveTo(480, 420, 470, 410)
+    ctx.closePath()
+    ctx.fill()
+
+    ctx.beginPath() // Small Eye
+    ctx.arc(520, 370, 6, 0, Math.PI * 2)
+    ctx.fill()
+
+    ctx.beginPath() // Big Eye
+    ctx.arc(570, 375, 7, 0, Math.PI * 2)
+    ctx.fill()
+
+    ctx.fillStyle = "#E1E6E2" // Shadow leg
+    ctx.beginPath()
+    ctx.arc(450, 670, 50, Math.PI * 0.5, Math.PI * 1.5)
+    ctx.arc(520, 670, 50, Math.PI * 1.5, Math.PI * 2)
+    ctx.arc(620, 670, 50, Math.PI * 1, Math.PI * 0.5, true)
+    ctx.closePath()
+    ctx.fill()
+
+    ctx.fillStyle = "#FDFBFC" // Front leg
+    ctx.beginPath()
+    ctx.arc(500, 685, 55, Math.PI * 0.5, Math.PI * 1.5)
+    ctx.arc(680, 665, 55, Math.PI * 1.5, Math.PI * 0.5)
+    ctx.closePath()
+    ctx.fill()
+
+    ctx.fillStyle = "#E1E6E2" // Front arm - shadow
+    ctx.beginPath()
+    ctx.arc(620, 525, 45, Math.PI * 0, Math.PI * 1, true)
+    ctx.arc(620, 600, 45, Math.PI * 1, Math.PI * 0, true)
+    ctx.closePath()
+    ctx.fill()
+
+    ctx.fillStyle = "#FDFBFC" // Front arm
+    ctx.beginPath()
+    ctx.arc(625, 500, 40, Math.PI * 0, Math.PI * 1, true)
+    ctx.arc(625, 595, 40, Math.PI * 1, Math.PI * 0, true)
+    ctx.closePath()
     ctx.fill()
 
 }
