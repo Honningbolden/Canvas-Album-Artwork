@@ -37,17 +37,6 @@ function draw() {
 
     // Title
     TitanFont.load().then(() => {
-        // let fontSize = 80
-        // let fontPositionY = 20
-        // let fontPositionX = 30
-        // ctx.font = `${fontSize}px TitanOne`;
-        // ctx.fillStyle = "hsl(210, 90%, 51%)";
-        // ctx.textBaseline = "hanging";
-        // ctx.fillText("TAKE", fontPositionX - 2, fontPositionY);
-        // ctx.fillText("ME BACK", fontPositionX, fontPositionY + (fontSize - fontSize/5) * 1);
-        // ctx.fillText("IN YOUR", fontPositionX, fontPositionY + (fontSize - fontSize/5) * 2);
-        // ctx.fillText("COLD EMBRACE", fontPositionX + 0, fontPositionY + (fontSize - fontSize/5) * 3);
-        // ctx.fillText(" ", fontPositionX + 130, fontPositionY + (fontSize - fontSize/5) * 4);
         ctx.font = "40px TitanOne";
         ctx.fillStyle = "hsl(39, 90%, 51%, 0.2)";
         ctx.textBaseline = "normal";
@@ -69,7 +58,7 @@ function draw() {
         ctx.fillText("TAKE", fontPositionX - 2, fontPositionY);
         ctx.fillText("ME", fontPositionX, fontPositionY + (fontSize - fontSize/5) * 1);
         ctx.fillText("BACK", fontPositionX, fontPositionY + (fontSize - fontSize/5) * 2);
-        ctx.fillText("IN", fontPositionX + 130, fontPositionY + (fontSize - fontSize/5) * 3);
+        ctx.fillText("INTO", fontPositionX, fontPositionY + (fontSize - fontSize/5) * 3);
         ctx.fillText("YOUR", fontPositionX, fontPositionY + (fontSize - fontSize/5) * 4);
         ctx.fillText("COLD", fontPositionX, fontPositionY + (fontSize - fontSize/5) * 5);
         ctx.font = `${fontSize * 1}px TitanOne`;
@@ -80,28 +69,30 @@ function draw() {
         ctx.beginPath()
         ctx.roundRect(fontPositionX + 90, fontPositionY + (fontSize - fontSize/5) * 1 + 14,  65, 44, 10)
         ctx.fill()
-        ctx.beginPath()
-        ctx.roundRect(fontPositionX, fontPositionY + (fontSize - fontSize/5) * 3 + 14,  125, 44, 10)
-        ctx.fill()
 
-        // let fontSize = 70
-        // let fontPositionY = 60
-        // let fontPositionX = 70
+        // let fontSize = 60
+        // let fontPositionY = 20
+        // let fontPositionX = 30
         // ctx.font = `${fontSize}px TitanOne`;
         // ctx.fillStyle = "hsl(210, 90%, 51%)";
         // ctx.textBaseline = "hanging";
         // ctx.fillText("TAKE", fontPositionX - 2, fontPositionY);
-        // // ctx.fillStyle = "rgba(28, 108, 199, 0.6)";
-        // ctx.fillText("ME", fontPositionX + 188, fontPositionY);
-        // // ctx.fillStyle = "rgba(28, 108, 199, 0.8)";
-        // ctx.fillText("BACK", fontPositionX - 2, fontPositionY + fontSize - fontSize/5);
-        // // ctx.fillStyle = "rgba(28, 108, 199, 0.6)";
-        // ctx.fillText("IN", fontPositionX + 200, fontPositionY + fontSize - fontSize/5);
-        // ctx.fillText("YOUR", fontPositionX - 4, fontPositionY + (fontSize - fontSize/5) * 2);
-        // // ctx.fillStyle = "rgba(28, 108, 199, 1)";
-        // ctx.fillText("COLD", fontPositionX + 210, fontPositionY + (fontSize - fontSize/5) * 2);
-        // // ctx.fillStyle = "rgba(28, 108, 199, 1)";
-        // ctx.fillText("EMBRACE", fontPositionX, fontPositionY + (fontSize - fontSize/5) * 3);
+        // ctx.fillText("ME", fontPositionX, fontPositionY + (fontSize - fontSize/5) * 1);
+        // ctx.fillText("BACK", fontPositionX, fontPositionY + (fontSize - fontSize/5) * 2);
+        // ctx.fillText("IN", fontPositionX + 130, fontPositionY + (fontSize - fontSize/5) * 3);
+        // ctx.fillText("YOUR", fontPositionX, fontPositionY + (fontSize - fontSize/5) * 4);
+        // ctx.fillText("COLD", fontPositionX, fontPositionY + (fontSize - fontSize/5) * 5);
+        // ctx.font = `${fontSize * 1}px TitanOne`;
+        // ctx.fillText("EMBRACE", fontPositionX, fontPositionY + (fontSize - fontSize/5) * 6);
+
+        // ctx.fillStyle = "hsla(210, 90%, 51%, 0.2)";
+
+        // ctx.beginPath()
+        // ctx.roundRect(fontPositionX + 90, fontPositionY + (fontSize - fontSize/5) * 1 + 14,  65, 44, 10)
+        // ctx.fill()
+        // ctx.beginPath()
+        // ctx.roundRect(fontPositionX, fontPositionY + (fontSize - fontSize/5) * 3 + 14,  125, 44, 10)
+        // ctx.fill()
     })
 
     // Draw sun
